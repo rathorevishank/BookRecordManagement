@@ -21,7 +21,7 @@ The Library Management System is a web application designed to streamline and si
 
 ## Installation and Usage
 
-1. Clone this repository: `git clone https://github.com/yourusername/library-management-system.git`
+1. Clone this repository: `git clone https://github.com/rathorevishank/BookRecordManagement.git`
 2. Install the required dependencies: `pip install -r requirements.txt`
 3. Configure database settings in `settings.py`.
 4. Run migrations: `python manage.py migrate`
