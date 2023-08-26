@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Management System</title>
+    <!-- Bootstrap CSS link -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <!--Nav bar using python -->
+    {% include "navbar.html" %}
+
+    <!-- Hero Section -->
+    <section class="hero bg-primary text-white text-center py-5">
+        <div class="container">
+            <h1 class="display-4">Welcome to Our Library</h1>
+            <p class="lead">Explore our vast collection of books and enhance your knowledge.</p>
+        </div>
+    </section>
+
+    <!-- Featured Books Carousel -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-4">Featured Books</h2>
+            <div id="featuredBooksCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner text-center"> <!-- Add text-center class to center the content -->
+                    {% for book in books reversed %}
+                    <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                        <div class="card d-inline-block mx-auto"> <!-- Add d-inline-block and mx-auto classes to center the card -->
+                            <img style="max-width: 300px;" src="/media/{{ book.picture }}" class="card-img-top" alt="{{ book.title }}">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ book.title }}</h5>
+                              <p class="card-text">Author: {{ book.author }}</p>
+                                <a href="/show-book/{{ book.id}}" class="btn btn-primary">Details</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                
+                <button class="carousel-control-prev" type="button" data-bs-target="#featuredBooksCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#featuredBooksCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-3">
+        <p>&hearts;  Made By Vishank Rathore</p>
+    </footer>
+
+    <!-- Bootstrap JS scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Initialize the carousel for automatic sliding
+        var featuredBooksCarousel = new bootstrap.Carousel(document.getElementById('featuredBooksCarousel'), {
+            interval: 1800 // Set the interval (in milliseconds) for automatic sliding
+        });
+    </script>
+</body>
+</html>

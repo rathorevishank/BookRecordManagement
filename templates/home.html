@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+
+  </head>
+  <body>
+    {% include "navbar.html" %}
+    <h1 class="text-center my-3">List Of Books</h1>
+    <div class="container">
+      <table class="table">
+        <thead class="thead-black">
+          <tr>
+            <th scope="col" class="text-center">BOOK_Id</th>
+            <th scope="col" class="text-center">IMAGE</th>
+            <th scope="col"  class="text-center">TITLE</th>
+             <th scope="col" class="text-center">AUTHOR</th>
+            <th scope="col" class="text-center">PRICE</th>
+            <th scope="col" class="text-center">RATING</th>
+            <th scope="col" class="text-center">ACTION</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for book in page_books  %}
+          <tr>
+            <td class="text-center">{{ page_books.start_index|add:forloop.counter0 }}</td>
+            <td class="text-center">
+              <img style="max-width: 180px;" src="/media/{{ book.picture }}" alt="">
+            </td>
+            <td class="text-center" style="font-style: oblique;"><b>{{ book.title }} </b></td>
+            <td class="text-center" style="font-family: 'Arial', sans-serif;"><i class="fas fa-user"></i> {{ book.author }}</td>
+            
+             <td class="text-center">   <i class="fas fa-rupee-sign"></i> {{ book.price }}<br></td>
+             <td class="text-center"><i class="fas fa-star"></i> {{ book.rating }}</td>
+          
+             <td class="text-center">
+              <a href="/delete-book/{{ book.id }}" class="btn btn-danger btn-sm">Delete</a>
+              <br/>
+              <br/>
+                <a  href="/edit-book/{{ book.id }}"   class="btn btn-dark btn-sm">Edit</a>
+                <br/>
+                <br/>
+                <a  href="/show-book/{{ book.id }}"   class="btn btn-success btn-sm">View</a>
+            </td>
+          
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <div class="container text-center">
+      <div class="pagination">
+          <span class="step-links">
+              {% if page_books.has_previous %}
+                  <a href="?page=1">&laquo; first</a>
+                  <a href="?page={{ page_books.previous_page_number }}">previous</a>
+              {% endif %}
+  
+              <span class="current">
+                  Page {{ page_books.number }} of {{ page_books.paginator.num_pages }}.
+              </span>
+  
+              {% if page_books.has_next %}
+                  <a href="?page={{ page_books.next_page_number }}">next</a>
+                  <a href="?page={{ page_books.paginator.num_pages }}">last &raquo;</a>
+              {% endif %}
+          </span>
+      </div>
+  </div>
+  
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+  </body>
+</html>
