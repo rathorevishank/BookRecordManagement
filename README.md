@@ -16,7 +16,7 @@ The Library Management System is a web application designed to streamline and si
 
 - Django: A high-level Python web framework for rapid development.
 - Bootstrap: A front-end framework for responsive and attractive user interfaces.
-- PostgreSQL: A powerful open-source relational database.
+- SQL Lite : SQLite is a lightweight, file-based relational database management system (RDBMS).
 - HTML, CSS, and JavaScript for front-end development.
 
 ## Installation and Usage
